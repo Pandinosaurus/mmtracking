@@ -10,14 +10,14 @@ import mmcv
 import torch
 import torch.distributed as dist
 from mmcv import Config, DictAction
-from mmcv.runner import init_dist
+from mmcv.runner import get_dist_info, init_dist
 from mmdet.apis import set_random_seed
 
 from mmtrack import __version__
 from mmtrack.apis import init_random_seed
 from mmtrack.core import setup_multi_processes
 from mmtrack.datasets import build_dataset
-from mmtrack.utils import collect_env, get_root_logger
+from mmtrack.utils import collect_env, get_device, get_root_logger
 
 
 def parse_args():
@@ -135,6 +135,9 @@ def main():
     else:
         distributed = True
         init_dist(args.launcher, **cfg.dist_params)
+        # gpu_ids is used to calculate iter when resuming checkpoint,
+        _, world_size = get_dist_info()
+        cfg.gpu_ids = range(world_size)
 
     # create work_dir
     mmcv.mkdir_or_exist(osp.abspath(cfg.work_dir))
@@ -162,16 +165,19 @@ def main():
 
     # set random seeds. Force setting fixed seed and deterministic=True in SOT
     # configs
+    cfg.device = get_device() if cfg.get('device',
+                                         None) is None else cfg.device
     if args.seed is not None:
         cfg.seed = args.seed
     elif cfg.get('seed', None) is None:
-        cfg.seed = init_random_seed()
+        cfg.seed = init_random_seed(device=cfg.device)
     cfg.seed = cfg.seed + dist.get_rank() if args.diff_seed else cfg.seed
 
     deterministic = True if args.deterministic else cfg.get(
         'deterministic', False)
     logger.info(f'Set random seed to {cfg.seed}, '
                 f'deterministic: {deterministic}')
+
     set_random_seed(cfg.seed, deterministic=deterministic)
     meta['seed'] = cfg.seed
 

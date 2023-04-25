@@ -238,7 +238,7 @@ python ./tools/convert_datasets/mot/mot2coco.py -i ./data/MOT17/ -o ./data/MOT17
 python ./tools/convert_datasets/mot/mot2reid.py -i ./data/MOT17/ -o ./data/MOT17/reid --val-split 0.2 --vis-threshold 0.3
 
 # DanceTrack
-python ./tools/convert_datasets/dancetrack/dancetrack2coco.py -i ./data/DanceTrack ./data/DanceTrack/annotations
+python ./tools/convert_datasets/dancetrack/dancetrack2coco.py -i ./data/DanceTrack -o ./data/DanceTrack/annotations
 
 # CrowdHuman
 python ./tools/convert_datasets/mot/crowdhuman2coco.py -i ./data/crowdhuman -o ./data/crowdhuman/annotations
@@ -269,7 +269,7 @@ python ./tools/convert_datasets/trackingnet/gen_trackingnet_infos.py -i ./data/t
 # 解压目录 'data/otb100/zips' 下的所有 '*.zip' 文件
 bash ./tools/convert_datasets/otb100/unzip_otb100.sh ./data/otb100
 # 下载标注
-# 由于UAV123数据集的所有视频的标注信息不具有统一性，我们仅需下载提前生成的数据信息文件即可。
+# 由于OTB100数据集的所有视频的标注信息不具有统一性，我们仅需下载提前生成的数据信息文件即可。
 wget https://download.openmmlab.com/mmtracking/data/otb100_infos.txt -P data/otb100/annotations
 
 # GOT10k

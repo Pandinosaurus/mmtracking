@@ -71,7 +71,7 @@ MMTracking是一款基于PyTorch的视频目标感知开源工具箱，是[OpenM
 
 - 添加了 [OC-SORT](configs/mot/ocsort/) 的预训练模型。
 
-v0.13.0版本已于2022年04月29日发布，可通过查阅[更新日志](docs/zh_cn/changelog.md)了解更多细节以及发布历史。
+v0.14.0版本已于2022年09月19日发布，可通过查阅[更新日志](docs/zh_cn/changelog.md)了解更多细节以及发布历史。
 
 ## 安装
 
@@ -108,6 +108,7 @@ MMTracking也提供了更详细的[教程](docs/zh_cn/tutorials/)，比如[配�
 
 - [x] [SiameseRPN++](configs/sot/siamese_rpn) (CVPR 2019)
 - [x] [STARK](configs/sot/stark) (ICCV 2021)
+- [x] [MixFormer](configs/sot/mixformer) (CVPR 2022)
 - [ ] [PrDiMP](https://arxiv.org/abs/2003.12565) (CVPR2020) (WIP)
 
 支持的数据集：
@@ -179,6 +180,7 @@ MMTracking是一款开源项目，我们欢迎任何贡献和反馈。我们希�
 - [MMClassification](https://github.com/open-mmlab/mmclassification): OpenMMLab 图像分类工具箱
 - [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab 目标检测工具箱
 - [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab 新一代通用 3D 目标检测平台
+- [MMYOLO](https://github.com/open-mmlab/mmyolo): OpenMMLab YOLO 系列工具箱和基准测试
 - [MMRotate](https://github.com/open-mmlab/mmrotate): OpenMMLab 旋转框检测工具箱与测试基准
 - [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab 语义分割工具箱
 - [MMOCR](https://github.com/open-mmlab/mmocr): OpenMMLab 全流程文字检测识别理解工具包
